@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using System.Data.SqlTypes;
+using FluentValidation;
 using PublicationWebApi.Queries;
 
 namespace PublicationWebApi.Validation
@@ -8,6 +9,10 @@ namespace PublicationWebApi.Validation
 
         public GetPublicationsByTimeRangeQueryValidator()
         {
+            RuleFor(x => x.DateFrom)
+                .GreaterThanOrEqualTo(x => SqlDateTime.MinValue.Value)
+            .When(x=>x.DateFrom != null);
+
             RuleFor(x => x.DateFrom)
                 .NotNull().When(x => x.DateTo == null);
             

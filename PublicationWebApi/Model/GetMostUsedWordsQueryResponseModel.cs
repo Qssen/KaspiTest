@@ -2,7 +2,7 @@
 {
     public class GetMostUsedWordsQueryResponseModel
     {
-        public string Word { get; set; }
-        public int MentionedCount { get; set; }
+        public string Name { get; set; }
+        public int WordCount { get; set; }
     }
 }

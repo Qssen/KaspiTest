@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using  MediatR;
+using PublicationWebApi.Validation;
 
 namespace PublicationWebApi
 {
@@ -20,6 +21,14 @@ namespace PublicationWebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMediatR(typeof(Startup));
+
+            #region Validator
+
+            services.AddSingleton<GetPublicationsByTimeRangeQueryValidator>();
+            services.AddSingleton<GetPublicationsThatContainsTextQueryValidator>();
+            
+            #endregion
+
             services.AddControllers();
         }
 
