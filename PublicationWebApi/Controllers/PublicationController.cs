@@ -29,6 +29,7 @@ namespace PublicationWebApi.Controllers
             _getPublicationsThatContainsTextQueryValidator = getPublicationsThatContainsTextQueryValidator;
         }
 
+        //[CustomAuth]
         [HttpGet("/api/posts")]
         public async Task<IEnumerable<PublicationViewModel>> GetPublications([FromQuery] GetPublicationsByTimeRangeQuery model)
         {
@@ -44,10 +45,12 @@ namespace PublicationWebApi.Controllers
             return await _mediator.Send(model);
         }
 
+        //[CustomAuth]
         [HttpGet("/api/topWords")]
         public async Task<IEnumerable<GetMostUsedWordsQueryResponseModel>> GetMostUsedWords([FromQuery] GetMostUsedWordsQuery model) 
             => await _mediator.Send(model);
 
+        //[CustomAuth]
         [HttpGet("/api/search")]
         public async Task<IEnumerable<PublicationViewModel>> GetPublicationsByText(
             [FromQuery] GetPublicationsThatContainsTextQuery model)
